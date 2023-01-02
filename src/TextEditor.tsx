@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Caret } from './caret';
+import { Caret } from './Caret';
 
 type Props = {
     workbook: string[]
