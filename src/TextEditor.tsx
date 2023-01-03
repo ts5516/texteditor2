@@ -38,10 +38,9 @@ export function TextEditor(props: Props) {
 
     const convertText = (text: string, key: string, wordbook: string[]): string => {
         const convertColor = convertTextColor(text, wordbook);
-        const convertEmpty = convertEmptyToWhitespace(convertColor);
-        const convertEnd = removeEndSpaceIfKeyIsNotSpace(convertEmpty, key);
+        const convertEmpty = convertEmptyToWhitespace(convertColor, key);
 
-        return convertEnd;
+        return convertEmpty;
     }
 
     const convertTextColor = (text: string, wordbook: string[]): string => {
@@ -56,14 +55,9 @@ export function TextEditor(props: Props) {
         return convertT;
     }
 
-    const convertEmptyToWhitespace = (text: string): string => {
-        return text === '' ? '&nbsp;' : text;
-    }
-
-    const removeEndSpaceIfKeyIsNotSpace = (text: string, key: string)
-        : string => {
-        if (key !== 'Space') {
-            return text.trimEnd();
+    const convertEmptyToWhitespace = (text: string, key: string): string => {
+        if (text === '' && key === 'Enter') {
+            return '&nbsp;';
         } else {
             return text;
         }

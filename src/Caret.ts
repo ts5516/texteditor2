@@ -17,7 +17,7 @@ export class Caret {
         preSelectionRange.setEnd(range.startContainer, range.startOffset);
 
         const start = preSelectionRange.toString().length;
-
+        console.log(range.startContainer.textContent);
         return {
             start: start,
             end: start + range.toString().length
@@ -38,6 +38,7 @@ export class Caret {
                 end: currentCaretPosition.end + 1
             } : currentCaretPosition;
 
+            console.log('save caret' + caret.start);
             this.setCaret(caret);
         }
     }
@@ -45,6 +46,7 @@ export class Caret {
     loadCaret(element: HTMLDivElement) {
         const range = document.createRange();
         const sel = window.getSelection();
+        console.log('load caret' + this.caret.start);
 
         let nodeStack: Node[] = [element];
         let node: Node | undefined = undefined;
